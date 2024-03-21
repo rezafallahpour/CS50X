@@ -1,0 +1,11 @@
+sort1 uses: bubble sort.
+
+How do you know?: because the time of the random of this algorithm was the worst.
+
+sort2 uses: merge sort.
+
+How do you know?: because the time of the random and sorted of this algorithm was the best.
+
+sort3 uses: selection sort.
+
+How do you know?: because the time of the random and sorted of this algorithm was the same nad became second.
