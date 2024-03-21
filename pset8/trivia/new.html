@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <title>Trivia!</title>
+    <script>
+        function handleMultipleChoiceAnswer(button) {
+            const buttons = document.querySelectorAll('.multiple-choice button');
+            buttons.forEach(button => {
+                if (button === this) {
+                    if (button.classList.contains('correct')) {
+                        button.style.backgroundColor = 'green';
+                        button.insertAdjacentHTML('afterend', '<p>Correct!</p>');
+                    } else {
+                        button.style.backgroundColor = 'red';
+                        button.insertAdjacentHTML('afterend', '<p>Incorrect</p>');
+                    }
+                } else {
+                    button.disabled = true;
+                }
+            });
+        }
+
+        function handleFreeResponseAnswer() {
+            const inputField = document.querySelector('.free-response input');
+            const userAnswer = inputField.value.trim().toLowerCase();
+            const responseText = document.createElement('p');
+
+            if (userAnswer === 'your_correct_answer') {
+                inputField.style.backgroundColor = 'green';
+                responseText.textContent = 'Correct!';
+            } else {
+                inputField.style.backgroundColor = 'red';
+                responseText.textContent = 'Incorrect';
+            }
+
+            inputField.parentNode.insertBefore(responseText, inputField.nextSibling);
+            inputField.disabled = true;
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>Trivia!</h1>
+    </div>
+
+    <div class="container">
+        <div class="section multiple-choice">
+            <h2>Part 1: Multiple Choice</h2>
+            <hr>
+            <h3>What is the capital of France?</h3>
+            <button class="incorrect" onclick="handleMultipleChoiceAnswer(this)">London</button>
+            <button class="incorrect" onclick="handleMultipleChoiceAnswer(this)">Berlin</button>
+            <button class="correct" onclick="handleMultipleChoiceAnswer(this)">Paris</button>
+            <button class="incorrect" onclick="handleMultipleChoiceAnswer(this)">Madrid</button>
+        </div>
+
+        <div class="section free-response">
+            <h2>Part 2: Free Response</h2>
+            <hr>
+            <h3>Who painted the Mona Lisa?</h3>
+            <input name="q" type="search">
+            <button type="button" onclick="handleFreeResponseAnswer()">Check Answer</button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    const buttons = document.querySelectorAll('.section button');
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            if (button.classList.contains('green')) {
+                button.style.backgroundColor = 'green';
+                // TODO: Show "Correct!" text
+            } else {
+                button.style.backgroundColor = 'red';
+                // TODO: Show "Incorrect" text
+            }
+        });
+    });
+</script>
